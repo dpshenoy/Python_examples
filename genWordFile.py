@@ -3,14 +3,20 @@
     roughly random length.  The words come from the system-provided Webster's 2nd
     edition dictionary at /usr/share/dict/web2
 
-    Inputs:     argv[1] --> n_words, the number of unique words to draw from
-                argv[2] --> outname, the output file name including the path
-                argv[3] --> out_size, approx desired file size in Mb
+    NOTE:  command line inputs n_words and out_size must come in as ints, and
+    the path to the linux system's Websters dictionary might vary by installation.
+    I have not added extensive exception handling for these issues, this is a quick
+    and dirty program I makde to give me sample input for playing with Hadoop and Spark.
+
+    Inputs:     argv[1] --> n_words, int:  the number of unique words to draw from
+                argv[2] --> outname, str: the output file name including the path
+                argv[3] --> out_size, int: approx desired file size in Mb
 
     Output:     randText.txt = text file of random words
 
-    Example:
-                $ ./genWordFile.py 5000 /Users/dshenoy/Downloads/randText.txt 1000
+    Example usage to make a 1Gb text file using a 5000 word vocabulary:
+
+                $ ./genWordFile.py 5000 randText.txt 1000
 '''
 import sys ; import os; import random ; from datetime import datetime
 import numpy as np ; np.random.seed(datetime.now().microsecond)
